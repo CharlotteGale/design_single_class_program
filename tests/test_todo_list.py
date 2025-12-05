@@ -17,11 +17,24 @@ def tests_tasks_added_to_todo_tasks_list():
     """
     todo_list = TodoList()
     todo_list.add_task("Walk the dog")
-    assert todo_list.todo_tasks == ["Walk the dog"]
+    assert todo_list.todo_tasks == [["Walk the dog", False]]
     todo_list.add_task("Feed the cat")
-    assert todo_list.todo_tasks == ["Walk the dog", "Feed the cat"]
-    
+    assert todo_list.todo_tasks == [["Walk the dog", False], ["Feed the cat", False]]
 
+
+def tests_marks_tasks_complete():
+    """
+    When given a task in mark_task_complete()
+    Marks is_complete as True in self.todo_tasks
+    """
+    todo_list = TodoList()
+    todo_list.add_task("Have a nap")
+    todo_list.add_task("Go for a walk")
+    todo_list.mark_task_complete("Have a nap")
+
+    assert todo_list.todo_tasks == [["Have a nap", True], ["Go for a walk", False]]
+
+    
 def tests_returns_list_of_tasks():
     """
     Given read_tasks
